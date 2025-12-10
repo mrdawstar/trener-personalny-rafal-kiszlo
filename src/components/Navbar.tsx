@@ -105,13 +105,16 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - TERAZ Z PRZEZROCZYSTYM TŁEM */}
       <div
-        className={`lg:hidden mobile-menu absolute top-full left-0 right-0 transition-all duration-300 ${
-          isOpen ? "opacity-100 visible h-auto" : "opacity-0 invisible h-0"
+        className={`lg:hidden mobile-menu absolute top-full left-0 right-0 transition-all duration-300 backdrop-blur-md ${
+          isOpen ? "opacity-100 visible max-h-screen" : "opacity-0 invisible max-h-0"
         }`}
+        style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.85)' // Ciemne półprzezroczyste tło
+        }}
       >
-        <div className="container-custom py-6 flex flex-col gap-1">
+        <div className="container-custom py-6 flex flex-col gap-2">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -120,9 +123,9 @@ export const Navbar = () => {
                 setIsOpen(false);
                 setActiveLink(link.href);
               }}
-              className={`nav-link text-base font-medium uppercase tracking-wider py-3 px-4 rounded-lg ${
-                activeLink === link.href ? "active-nav-link" : ""
-              }`}
+              className={`mobile-nav-link text-base font-medium uppercase tracking-wider py-4 px-4 rounded-lg transition-all duration-300 ${
+                activeLink === link.href ? "active-mobile-nav-link" : ""
+              } hover:bg-white/10 hover:pl-6`}
             >
               {link.name}
             </a>
@@ -133,15 +136,15 @@ export const Navbar = () => {
               setIsOpen(false);
               setActiveLink("#english");
             }}
-            className={`nav-link text-base font-medium uppercase tracking-wider py-3 px-4 rounded-lg flex items-center gap-2 ${
-              activeLink === "#english" ? "active-nav-link" : ""
-            }`}
+            className={`mobile-nav-link text-base font-medium uppercase tracking-wider py-4 px-4 rounded-lg flex items-center gap-2 transition-all duration-300 ${
+              activeLink === "#english" ? "active-mobile-nav-link" : ""
+            } hover:bg-white/10 hover:pl-6`}
           >
             ENGLISH <span>🇬🇧</span>
           </a>
           <a
             href="tel:+48608472294"
-            className="btn-primary flex items-center justify-center gap-2 mt-6 py-3 text-lg font-semibold"
+            className="mobile-btn-primary flex items-center justify-center gap-2 mt-6 py-4 text-lg font-semibold bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300"
             onClick={() => setIsOpen(false)}
           >
             <Phone className="w-5 h-5" />
